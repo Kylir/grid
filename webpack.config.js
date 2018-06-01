@@ -1,13 +1,15 @@
 const path = require('path');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-module.exports = {
+module.exports = (env, argv) => ({
   entry: './client/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js'
   },
   devServer: {
-    contentBase: './dist'
+    contentBase: './dist',
+    overlay: true
   },
   module: {    
     rules: [
@@ -20,7 +22,20 @@ module.exports = {
             presets: [ 'es2015', 'react']
           }
         }
+      },
+      {
+        test: /\.scss$/,
+        use: [
+            MiniCssExtractPlugin.loader,
+            "css-loader",
+            "sass-loader"
+        ]
       }
     ]
-  }
-};
+  },
+  plugins: [
+      new MiniCssExtractPlugin({
+          filename: "[name].css",
+      })
+  ]
+});
