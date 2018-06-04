@@ -1,5 +1,6 @@
-const path = require('path');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = (env, argv) => ({
   entry: './client/index.js',
@@ -19,7 +20,7 @@ module.exports = (env, argv) => ({
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [ 'es2015', 'react']
+            presets: ['es2015', 'react']
           }
         }
       },
@@ -34,8 +35,10 @@ module.exports = (env, argv) => ({
     ]
   },
   plugins: [
-      new MiniCssExtractPlugin({
-          filename: "[name].css",
+      new MiniCssExtractPlugin({filename: "[name].css"}),
+      new HtmlWebpackPlugin({
+        template: "./client/index.html",
+        filename: "./index.html"
       })
   ]
-});
+})
