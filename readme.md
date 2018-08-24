@@ -20,3 +20,4 @@ This simple application has two goals:
 + Add tests! Jest + Enzyme would be nice.
 + Add a new component to display the C code to display the state of the matrix.
 + Add a server side part?
++ Add an authentication layer?
